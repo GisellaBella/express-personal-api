@@ -41,7 +41,7 @@ app.get('/api', function api_index(req, res) {
 
     message: "Welcome to my personal api! Here's what you need to know!",
     documentation_url: "https://github.com/gisellabella/express_self_api/README.md", 
-    //base_url: "http://serene-dawn-76546.herokuapp.com", 
+    base_url: "http://serene-dawn-76546.herokuapp.com", 
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile",   description: "My Profile Points"},

@@ -24,11 +24,11 @@ var new_profile = {
  							 	},
  							 ],
   							  "listening_to": [
-  							  {"musician": "Ryan Adams"},
-  							  {"musician": "Ray LaMontagne"},
-  							  {"musician": "PJ Harvey"},
-  							  {"musician": "Lucinda Williams"},
-  							  {"musician": "Pixies"},],
+  							  {"music": "Ryan Adams"},
+  							  {"music": "Ray LaMontagne"},
+  							  {"music": "PJ Harvey"},
+  							  {"music": "Lucinda Williams"},
+  							  {"music": "Pixies"},],
                   };
 
 db.Profile.create(new_profile, function(err, profile){
