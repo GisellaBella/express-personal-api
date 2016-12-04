@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var RecentBooksSchema = new Schema ({
+var RecentBookSchema = new Schema ({
 	book_name: String,
 	plot_summary: String,
 });

@@ -4,13 +4,13 @@ var Schema = mongoose.Schema;
 
 
 var MusicFavesSchema = new Schema ({
-  musician: String,
+  music: String,
 });
 
-var Musician = mongoose.model('Musician', MusicFavesSchema);
+var Music = mongoose.model('Music', MusicFavesSchema);
 
 
 
-module.exports = Musician;
+module.exports = Music;
 
 

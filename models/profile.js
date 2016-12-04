@@ -9,14 +9,14 @@ var ProfileSchema = new Schema({
                               facebook_link: String,
                               current_city_state: String,
                               current_photo: String,
+                              time : { type : Date, default: Date.now }
                               //is_awake: Boolean,
-                              pets: [PetSchema],
+                              pet: [PetSchema],
                               recent_books: [RecentBooksSchema],
                               listening_to: [MusicFavesSchema],
                              });
 
 //ProfileSchema.methods.isAwake = function isAwake(params, callback) {
-  //implementation code goes here
 
 
 var Profile = mongoose.model('Profile', ProfileSchema);

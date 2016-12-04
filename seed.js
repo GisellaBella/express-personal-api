@@ -11,7 +11,8 @@ var new_profile = {
                               "current_city_state": "Boulder, Co",
                               "current_photo": "https://www.facebook.com/photo.php?fbid=10154114697147149&l=5b84c80589",
                               //is_awake: Boolean,
-                              "pets": [{"name": "coco"}],
+                              //"time" : ,
+                              "pet": [{"name": "coco"}],
                               "recent_books": [
                               	{	
 								"book_name": "The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life",
