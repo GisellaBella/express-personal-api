@@ -6,11 +6,11 @@ mongoose.connect( process.env.MONGODB_URI ||
 
 var Profile = require("./profile");
 var Book = require("./book.js");
-var Musician = require("./musician.js");
+var Music = require("./music.js");
 var Pet = require("./pet.js");
 
 module.exports.Profile = require("./profile.js");
 module.exports.Book = require("./book.js");
-module.exports.Musician = require("./musician.js");
+module.exports.Music = require("./music.js");
 module.exports.Pet = require("./pet.js");
 
