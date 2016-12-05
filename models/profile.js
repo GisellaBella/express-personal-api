@@ -1,7 +1,6 @@
 // profile.js
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Pet = require("./pet.js");
 var ProfileSchema = new Schema ({
                               name: String,
                               github_link: String,

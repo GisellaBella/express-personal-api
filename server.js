@@ -39,29 +39,62 @@ app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
 
-    message: "Welcome to my personal api! Here's what you need to know!",
+    message: "Welcome to my personal api! Here's what you need to know to have a fully 'cruddy' expperience!",
     documentation_url: "https://github.com/gisellabella/express_self_api/README.md", 
     base_url: "http://serene-dawn-76546.herokuapp.com", 
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile",   description: "My Profile Points"},
-      {method: "GET", path: "/api/book", description: "Get recent books"},
-      {method: "GET", path: "/api/music", description: "Get recent music"},
+      {method: "GET", path: "/api/book", description: "Get my recent books"},
+      {method: "GET", path: "/api/book/_id", description: "Get a recent book"},
+      {method: "GET", path: "/api/music_id", description: "Get a recent music record"},
       {method: "POST", path: "/api/book", description: "Add a new book"},
       {method: "POST", path: "/api/music", description: "Add new music"},
+      {method: "Delete", path: "/api/book", description: "Delete a book"},
+      {method: "Delete", path: "/api/music", description: "Delete music"},
     ]
 });
 });
 
 
 app.get('/api/profile', function profile(request, response){
-  res.json(profile);
+  res.json({
+
+        name: "Gisella Walter",
+        github_link: "https://github.com/GisellaBella",
+        linkedin_link: "https://www.linkedin.com/in/gisellawalter",
+        facebook_link: "https://www.facebook.com/gisella.walter",
+        current_city_state: "Boulder, CO",
+        current_photo: "https://www.facebook.com/photo.php?fbid=10154114697147149&l=5b84c80589",
+          //is_awake: Boolean,
+          //"time" : ,
+        pet: [
+          {name: "Coco"}
+        ],
+        recent_books: [
+          { book_name: "The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life",
+            plot_summary: "For decades we've been told that positive thinking is the key to a happy, rich life. F*ck positivity, Mark Manson says..."
+          },
+          {
+            book_name: "Emotional Agility",
+            plot_summary: " way we respond to these internal experiences drives our actions, careers,",
+          },
+        ],
+        listening_to: [
+            {music: "Ryan Adams"},
+            {music: "Ray LaMontagne"},
+            {music: "PJ Harvey"},
+            {music: "Lucinda Williams"},
+            {music: "Pixies"},
+        ],
+              
+  });
 });
 
 // Returns Books.
 app.get('/api/book', function (req, res) {
   db.Book.find(function(err, book){
-    if (err) { return console.log("Got Book error: " + err);}
+    if (err) { return console.log("Got a Get Books error: " + err);}
     res.json(book);
   }); 
 });
@@ -69,7 +102,7 @@ app.get('/api/book', function (req, res) {
 // Returns  Music.
 app.get('/api/music', function (req, res) {
   db.Book.find(function(err, music){
-    if (err) { return console.log("Got music error: " + err);}
+    if (err) { return console.log("Got a get music error: " + err);}
     res.json(music);
   });
 });
@@ -91,6 +124,29 @@ app.get('/api/music', function (req, res) {
   newMusic._id = music.length + 1;
   music.push (req.body);
   res.json(music);
+});
+
+
+// delete Book
+app.delete('/api/book/:id', function (req, res) {
+// get book id from url params (req.params)
+console.log('book delete', req.params);
+var bookId = req.params.id;
+//find the id of the book to remove
+db.book.findOneAndRemove({ _id: bookId }, function (err, deletedBook) {
+res.json(deletedBook);
+});
+});
+
+// delete Music
+app.delete('/api/music/:id', function (req, res) {
+// get book id from url params (req.params)
+console.log('music to delete', req.params);
+var musicId = req.params.id;
+//find the id of the book to remove
+db.music.findOneAndRemove({ _id: musicId }, function (err, deletedMusic) {
+res.json(deletedMusic);
+}); 
 });
 
 
