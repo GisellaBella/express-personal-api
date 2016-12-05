@@ -1,6 +1,6 @@
 // This file allows us to seed our application with data simply run: `node
 // seed.js` from the root of this project folder.
-
+var mongoose = require("mongoose");
 var db = require('./models');
 
 var book_list = [  
@@ -58,7 +58,7 @@ db.Music.create(music_list, function(err, music){
       	console.log("saved");
       	save();
       });
-      process.exit();
+      //process.exit();
     });
 
 
@@ -70,7 +70,7 @@ db.Book.create(book_list, function(err, book){
       	console.log("saved");
       	save();
       });
-      process.exit();
+      //process.exit();
     });
 
 
