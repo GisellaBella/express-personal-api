@@ -38,25 +38,37 @@ var music_list =	[
 
 ];
 
-db.Profile.create(profile, function(err, profile){   
-if (err) {
-	console.log("Profile DB create Error:", err);
-	return;
-	}
-console.log("Created new profile", profile._id); 
-process.exit();
+//db.Profile.create(profile, function(err, profile){   
+//if (err) {
+	//console.log("Profile DB create Error:", err);
+	//return;
+	//}
+//console.log("Created new profile", profile._id); 
+//process.exit();
 // we're all done! Exit the program.
-});
+//});
 
-db.Music.create(music, function(err, addMusic){
+db.Music.create(music_list, function(err, addMusic){
       if (err) { return console.log(' music db err', err); }
       console.log(music.length + " music entries have been added.");
       process.exit();
     });
 
-db.Book.create(book, function(err, addBook){
-      if (err) { return console.log('music db err', err); }
+db.Book.create(book_list, function(err, addBook){
+      if (err) { return console.log('book db err', err); }
       console.log(book.length + " books have been added.");
       process.exit();
     });
 
+db.Music.remove( (), function(err, removeMusic){
+	if (err) {return console.log ('problem deleting music', err);
+	}
+	console.log("removed.");
+    process.exit();
+  });
+db.addBook.remove( (), function(err, removeMusic){
+	if (err) {return console.log ('problem deleting music', err);
+	}
+	console.log("removed.");
+    process.exit();
+  });

@@ -111,7 +111,7 @@ app.get('/api/music', function (request, response) {
 // Post Books.
 app.post('/api/book', function (request, response) {
   var newBook = request.body;
-  newBook._id = book.length + 1;
+  newBook.id = book.length + 1;
   book.push (request.body);
   response.json(book);
   });
@@ -121,7 +121,7 @@ app.post('/api/book', function (request, response) {
 //Post Music.
 app.get('/api/music', function (request, response) {
   var newMusic= request.body;
-  newMusic._id = music.length + 1;
+  newMusic.id = music.length + 1;
   music.push (request.body);
   response.json(music);
 });
@@ -133,7 +133,7 @@ app.delete('/api/book/:id', function (request, response) {
 console.log('book delete', request.params);
 var bookId = request.params.id;
 //find the id of the book to remove
-db.book.findOneAndRemove({ _id: bookId }, function (err, deletedBook) {
+db.book.findOneAndRemove({ id: bookId }, function (err, deletedBook) {
 response.json(deletedBook);
 });
 });
@@ -144,7 +144,7 @@ app.delete('/api/music/:id', function (request, response) {
 console.log('music to delete', request.params);
 var musicId = request.params.id;
 //find the id of the book to remove
-db.music.findOneAndRemove({ _id: musicId }, function (err, deletedMusic) {
+db.music.findOneAndRemove({ id: musicId }, function (err, deletedMusic) {
 response.json(deletedMusic);
 }); 
 });
