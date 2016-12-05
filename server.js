@@ -26,8 +26,8 @@ app.use(express.static('public'));
  * HTML Endpoints
  */
 
-app.get('/', function homepage(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+app.get('/', function homepage(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
 });
 
 
@@ -35,9 +35,9 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
-app.get('/api', function api_index(req, res) {
+app.get('/api', function api_index(request, response) {
   // TODO: Document all your api endpoints below
-  res.json({
+  ressponse.json({
 
     message: "Welcome to my personal api! Here's what you need to know to have a fully 'cruddy' expperience!",
     documentation_url: "https://github.com/gisellabella/express_self_api/README.md", 
@@ -58,7 +58,7 @@ app.get('/api', function api_index(req, res) {
 
 
 app.get('/api/profile', function profile(request, response){
-  res.json({
+  response.json({
 
         name: "Gisella Walter",
         github_link: "https://github.com/GisellaBella",
@@ -92,60 +92,60 @@ app.get('/api/profile', function profile(request, response){
 });
 
 // Returns Books.
-app.get('/api/book', function (req, res) {
+app.get('/api/book', function (request, response) {
   db.Book.find(function(err, book){
     if (err) { return console.log("Got a Get Books error: " + err);}
-    res.json(book);
+    response.json(book);
   }); 
 });
 
 // Returns  Music.
-app.get('/api/music', function (req, res) {
+app.get('/api/music', function (request, response) {
   db.Book.find(function(err, music){
     if (err) { return console.log("Got a get music error: " + err);}
-    res.json(music);
+    response.json(music);
   });
 });
 
 
 // Post Books.
-app.post('/api/book', function (req, res) {
-  var newBook = req.body;
+app.post('/api/book', function (request, response) {
+  var newBook = request.body;
   newBook._id = book.length + 1;
-  book.push (req.body);
-  res.json(book);
+  book.push (request.body);
+  response.json(book);
   });
 
 
 
 //Post Music.
-app.get('/api/music', function (req, res) {
-  var newMusic= req.body;
+app.get('/api/music', function (request, response) {
+  var newMusic= request.body;
   newMusic._id = music.length + 1;
-  music.push (req.body);
-  res.json(music);
+  music.push (request.body);
+  response.json(music);
 });
 
 
 // delete Book
-app.delete('/api/book/:id', function (req, res) {
-// get book id from url params (req.params)
-console.log('book delete', req.params);
-var bookId = req.params.id;
+app.delete('/api/book/:id', function (request, response) {
+// get book id from url params (request.params)
+console.log('book delete', request.params);
+var bookId = request.params.id;
 //find the id of the book to remove
 db.book.findOneAndRemove({ _id: bookId }, function (err, deletedBook) {
-res.json(deletedBook);
+response.json(deletedBook);
 });
 });
 
 // delete Music
-app.delete('/api/music/:id', function (req, res) {
-// get book id from url params (req.params)
-console.log('music to delete', req.params);
-var musicId = req.params.id;
+app.delete('/api/music/:id', function (request, response) {
+// get book id from url params (request.params)
+console.log('music to delete', request.params);
+var musicId = request.params.id;
 //find the id of the book to remove
 db.music.findOneAndRemove({ _id: musicId }, function (err, deletedMusic) {
-res.json(deletedMusic);
+response.json(deletedMusic);
 }); 
 });
 
