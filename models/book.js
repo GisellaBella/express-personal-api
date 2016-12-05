@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var BookSchema = new Schema ({
 	book_name: String,
 	plot_summary: String,
+	type: String
 });
 
 

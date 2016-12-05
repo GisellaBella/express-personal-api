@@ -37,7 +37,7 @@ app.get('/', function homepage(request, response) {
 
 app.get('/api', function api_index(request, response) {
   // TODO: Document all your api endpoints below
-  ressponse.json({
+  response.json({
 
     message: "Welcome to my personal api! Here's what you need to know to have a fully 'cruddy' expperience!",
     documentation_url: "https://github.com/gisellabella/express_self_api/README.md", 
@@ -73,11 +73,13 @@ app.get('/api/profile', function profile(request, response){
         ],
         recent_books: [
           { book_name: "The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life",
-            plot_summary: "For decades we've been told that positive thinking is the key to a happy, rich life. F*ck positivity, Mark Manson says..."
+            plot_summary: "For decades we've been told that positive thinking is the key to a happy, rich life. F*ck positivity, Mark Manson says...",
+            type: "self-help"
           },
           {
             book_name: "Emotional Agility",
             plot_summary: " way we respond to these internal experiences drives our actions, careers,",
+            type: "self-help"
           },
         ],
         listening_to: [
@@ -127,7 +129,7 @@ app.get('/api/music', function (request, response) {
 });
 
 
-// delete Book
+// delete Book (unclear whether we can delete by name or of we need database ID number.)
 app.delete('/api/book/:id', function (request, response) {
 // get book id from url params (request.params)
 console.log('book delete', request.params);
