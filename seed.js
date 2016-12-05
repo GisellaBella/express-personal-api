@@ -66,7 +66,7 @@ db.Music.remove( (), function(err, removeMusic){
 	console.log("removed.");
     process.exit();
   });
-db.addBook.remove( (), function(err, removeMusic){
+db.addBook.remove({}, function(err, removeMusic){
 	if (err) {return console.log ('problem deleting music', err);
 	}
 	console.log("removed.");
