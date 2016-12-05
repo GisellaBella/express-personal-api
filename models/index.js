@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 mongoose.connect( process.env.MONGODB_URI || 
                   process.env.MONGOLAB_URI || 
                   process.env.MONGOHQ_URL || 
-                  "mongodb://localhost/personal-api");
+                  "mongodb://localhost/express-personal-api");
 
 var Profile = require("./profile");
 var Book = require("./book.js");
