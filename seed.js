@@ -53,24 +53,39 @@ var music_list =	[
 db.Music.create(music_list, function(err, music){
       if (err) { return console.log(' music db err', err); }
       console.log(music.length + " music entries have been added.");
+      Music.save(function(err, saveMusic){
+      	if (err){return console.log(err);}
+      	console.log("saved");
+      	save();
+      });
       process.exit();
     });
+
 
 db.Book.create(book_list, function(err, book){
       if (err) { return console.log('book db err', err); }
       console.log(book.length + " books have been added.");
+      Book.save(function(err, saveBook){
+      	if (err){return console.log(err);}
+      	console.log("saved");
+      	save();
+      });
       process.exit();
     });
 
-db.Music.remove( (), function(err, music){
-	if (err) {return console.log ('problem deleting music', err);
-	}
-	console.log("removed.");
-    process.exit();
-  });
-db.addBook.remove({}, function(err, music){
-	if (err) {return console.log ('problem deleting music', err);
-	}
-	console.log("removed.");
-    process.exit();
-  });
+
+
+
+
+		// db.Music.remove( {}, function(err, music){
+		// 	if (err) {return console.log ('problem deleting music', err);
+		// 	}
+		// 	console.log("removed.");
+		//     process.exit();
+		//   });
+		// db.Book.remove({}, function(err, book){
+		// 	if (err) {return console.log ('problem deleting book', err);
+		// 	}
+		// 	console.log("removed.");
+		//     process.exit();
+		//   });
