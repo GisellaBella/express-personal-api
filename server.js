@@ -122,7 +122,7 @@ app.post('/api/book', function (request, response) {
 
 
 //Post Music.
-app.get('/api/music', function (request, response) {
+app.post('/api/music', function (request, response) {
   var newMusic= request.body;
   newMusic.id = music.length + 1;
   music.push (request.body);
@@ -136,10 +136,11 @@ app.delete('/api/book/:id', function (request, response) {
 console.log('book delete', request.params);
 var bookId = request.params.id;
 //find the id of the book to remove
-db.book.findOneAndRemove({ id: bookId }, function (err, deletedBook) {
+db.book.findOneAndRemove({_id: bookId }, function (err, deletedBook) {
 response.json(deletedBook);
 });
 });
+
 
 // delete Music
 app.delete('/api/music/:id', function (request, response) {
@@ -147,7 +148,7 @@ app.delete('/api/music/:id', function (request, response) {
 console.log('music to delete', request.params);
 var musicId = request.params.id;
 //find the id of the book to remove
-db.music.findOneAndRemove({ id: music }, function (err, deletedMusic) {
+db.music.findOneAndRemove({_id: musicId }, function (err, deletedMusic) {
 response.json(deletedMusic);
 }); 
 });
