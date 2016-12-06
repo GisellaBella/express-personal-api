@@ -1,6 +1,6 @@
 // This file allows us to seed our application with data simply run: `node
 // seed.js` from the root of this project folder.
-
+var mongoose = require("mongoose");
 var db = require('./models');
 
 var book_list = [  
@@ -37,13 +37,16 @@ var music_list =	[
 {
 	  music: "Leonard Cohen",
 },
+{
+	  music: "The Eagles",
+},
 
 ];
 
-//db.Profile.create(profile, function(err, profile){   
-//if (err) {
-	//console.log("Profile DB create Error:", err);
-	//return;
+	// db.Profile.create(profile, function(err, profile){   
+	// if (err) {
+	// 	console.log("Profile DB create Error:", err);
+	// 	return;
 	//}
 //console.log("Created new profile", profile._id); 
 //process.exit();
@@ -58,7 +61,6 @@ db.Music.create(music_list, function(err, music){
       	console.log("saved");
       	save();
       });
-      process.exit();
     });
 
 
@@ -69,8 +71,7 @@ db.Book.create(book_list, function(err, book){
       	if (err){return console.log(err);}
       	console.log("saved");
       	save();
-      });
-      process.exit();
+    });
     });
 
 
