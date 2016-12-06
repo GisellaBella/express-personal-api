@@ -40,10 +40,10 @@ var music_list =	[
 
 ];
 
-//db.Profile.create(profile, function(err, profile){   
-//if (err) {
-	//console.log("Profile DB create Error:", err);
-	//return;
+	// db.Profile.create(profile, function(err, profile){   
+	// if (err) {
+	// 	console.log("Profile DB create Error:", err);
+	// 	return;
 	//}
 //console.log("Created new profile", profile._id); 
 //process.exit();
@@ -58,7 +58,7 @@ db.Music.create(music_list, function(err, music){
       	console.log("saved");
       	save();
       });
-      //process.exit();
+		mongoose.connection.close();
     });
 
 
@@ -70,7 +70,7 @@ db.Book.create(book_list, function(err, book){
       	console.log("saved");
       	save();
       });
-      //process.exit();
+		mongoose.connection.close();
     });
 
 

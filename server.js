@@ -95,15 +95,16 @@ app.get('/api/profile', function profile(request, response){
 
 // Returns Books.
 app.get('/api/book', function (request, response) {
-  db.Book.find(function(err, book){
+  db.Book.find({},function(err, book){
     if (err) { return console.log("Got a Get Books error: " + err);}
-    response.json(book);
-  }); 
+    response.json(book); 
 });
+  });
+
 
 // Returns  Music.
 app.get('/api/music', function (request, response) {
-  db.Book.find(function(err, music){
+  db.Book.find({},function(err, music){
     if (err) { return console.log("Got a get music error: " + err);}
     response.json(music);
   });
@@ -146,7 +147,7 @@ app.delete('/api/music/:id', function (request, response) {
 console.log('music to delete', request.params);
 var musicId = request.params.id;
 //find the id of the book to remove
-db.music.findOneAndRemove({ id: musicId }, function (err, deletedMusic) {
+db.music.findOneAndRemove({ id: music }, function (err, deletedMusic) {
 response.json(deletedMusic);
 }); 
 });
