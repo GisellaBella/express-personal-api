@@ -143,16 +143,16 @@ app.post('/api/book', function (request, response) {
 // });
 
 
-    // // delete Book (unclear whether we can delete by name or of we need database ID number.)
-    // app.delete('/api/book/:id', function (request, response) {
-    // // get book id from url params (request.params)
-    // console.log('book delete', request.params.id);
-    // var bookId = request.params.id;
-    // //find the id of the book to remove
-    // db.book.findOneAndRemove({_id: request.params.id}, function (err, deletedBook) {
-    // response.json(deletedBook);
-    // });
-    // });
+    // delete Book (unclear whether we can delete by name or of we need database ID number.)
+    app.delete('/api/book/:id', function (request, response) {
+    // get book id from url params (request.params)
+    console.log('book delete', request.params.id);
+    var bookId = request.params.id;
+    //find the id of the book to remove
+    db.book.findOneAndRemove({_id: request.params.id}, function (err, deletedBook) {
+    response.json(deletedBook);
+    });
+    });
 
 
     // // delete Music
