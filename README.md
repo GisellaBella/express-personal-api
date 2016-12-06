@@ -4,7 +4,7 @@ https://serene-dawn-76546.herokuapp.com/
 API Top Level
 https://serene-dawn-76546.herokuapp.com/api
 
-Profile API (instrucntions)
+Profile API (instructions)
 https://serene-dawn-76546.herokuapp.com/api/profile
 
 Could not get the DB to seed for books and Music...
