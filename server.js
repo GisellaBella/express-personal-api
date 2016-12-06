@@ -114,7 +114,7 @@ app.get('/api/music', function (request, response) {
 // Post Books.
 app.post('/api/book', function (request, response) {
     var newBook = new db.Book ({
-        book_name: request.body.name,
+        book_name: request.body.book_name,
         plot_summary: request.body.plot_summary,
         type: request.body.type
     });
@@ -122,49 +122,49 @@ app.post('/api/book', function (request, response) {
       if (err) { 
         return console.log("Got a get book posting error: " + err);
       } 
-      book.push(request.body);
+      //book.push(request.body);
       response.json(book);
     });
 });
 
 
 //Post Music.
-app.post('/api/music', function (request, response) {
-  var newMusic= new db.Music ({
-      music: request.body.music,
-  });
-  newMusic.save(function (err, book){
-      if (err) { 
-        return console.log("Got a get music posting error: " + err);
-      }
-  music.push(request.body);
-  response.json(music);
-});
-});
+// app.post('/api/music', function (request, response) {
+//   var newMusic= new db.Music ({
+//       music: request.body.music,
+//   });
+//   newMusic.save(function (err, book){
+//       if (err) { 
+//         return console.log("Got a get music posting error: " + err);
+//       }
+//   //music.push(request.body);
+//   response.json(music);
+// });
+// });
 
 
-// delete Book (unclear whether we can delete by name or of we need database ID number.)
-app.delete('/api/book/:id', function (request, response) {
-// get book id from url params (request.params)
-console.log('book delete', request.params.id);
-var bookId = request.params.id;
-//find the id of the book to remove
-db.book.findOneAndRemove({_id: request.params.id}, function (err, deletedBook) {
-response.json(deletedBook);
-});
-});
+    // // delete Book (unclear whether we can delete by name or of we need database ID number.)
+    // app.delete('/api/book/:id', function (request, response) {
+    // // get book id from url params (request.params)
+    // console.log('book delete', request.params.id);
+    // var bookId = request.params.id;
+    // //find the id of the book to remove
+    // db.book.findOneAndRemove({_id: request.params.id}, function (err, deletedBook) {
+    // response.json(deletedBook);
+    // });
+    // });
 
 
-// delete Music
-app.delete('/api/music/:id', function (request, response) {
-// get book id from url params (request.params)
-console.log('music to delete', request.params.id);
-var musicId = request.params.id;
-//find the id of the book to remove
-db.music.findOneAndRemove({_id: request.params.id}, function (err, deletedMusic) {
-response.json(deletedMusic);
-}); 
-});
+    // // delete Music
+    // app.delete('/api/music/:id', function (request, response) {
+    // // get book id from url params (request.params)
+    // console.log('music to delete', request.params.id);
+    // var musicId = request.params.id;
+    // //find the id of the book to remove
+    // db.music.findOneAndRemove({_id: request.params.id}, function (err, deletedMusic) {
+    // response.json(deletedMusic);
+    // }); 
+    // });
 
 
 /**********
