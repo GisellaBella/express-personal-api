@@ -122,7 +122,8 @@ app.post('/api/book', function (request, response) {
       if (err) { 
         return console.log("Got a get book posting error: " + err);
       } 
-    response.json(book);
+      book.push(request.body);
+      response.json(book);
     });
 });
 
@@ -136,9 +137,11 @@ app.post('/api/music', function (request, response) {
       if (err) { 
         return console.log("Got a get music posting error: " + err);
       }
+  music.push(request.body);
   response.json(music);
 });
 });
+
 
 // delete Book (unclear whether we can delete by name or of we need database ID number.)
 app.delete('/api/book/:id', function (request, response) {
