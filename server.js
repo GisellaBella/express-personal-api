@@ -104,7 +104,7 @@ app.get('/api/book', function (request, response) {
 
 // Returns  Music.
 app.get('/api/music', function (request, response) {
-  db.Book.find({},function(err, music){
+  db.Music.find({},function(err, music){
     if (err) { return console.log("Got a get music error: " + err);}
     response.json(music);
   });

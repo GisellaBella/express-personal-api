@@ -37,6 +37,9 @@ var music_list =	[
 {
 	  music: "Leonard Cohen",
 },
+{
+	  music: "The Eagles",
+},
 
 ];
 
@@ -58,7 +61,6 @@ db.Music.create(music_list, function(err, music){
       	console.log("saved");
       	save();
       });
-		mongoose.connection.close();
     });
 
 
@@ -69,8 +71,7 @@ db.Book.create(book_list, function(err, book){
       	if (err){return console.log(err);}
       	console.log("saved");
       	save();
-      });
-		mongoose.connection.close();
+    });
     });
 
 
