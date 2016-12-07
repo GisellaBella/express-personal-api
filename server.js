@@ -36,26 +36,23 @@ app.get('/', function homepage(request, response) {
  */
 
 app.get('/api', function api_index(request, response) {
-  // TODO: Document all your api endpoints below
   response.json({
-
     message: "Welcome to my personal api! Here's what you need to know to have a fully 'cruddy' expperience!",
     documentation_url: "https://github.com/gisellabella/express_self_api/README.md", 
     base_url: "http://serene-dawn-76546.herokuapp.com", 
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile",   description: "My Profile Points"},
-      {method: "GET", path: "/api/book", description: "Get my recent books"},
+      {method: "GET", path: "/api/book", description: "Get a few of my favorite reads"},
       {method: "GET", path: "/api/book/_id", description: "Get a recent book"},
       {method: "GET", path: "/api/music_id", description: "Get a recent music record"},
       {method: "POST", path: "/api/book", description: "Add a new book"},
       {method: "POST", path: "/api/music", description: "Add new music"},
       {method: "Delete", path: "/api/book", description: "Delete a book"},
       {method: "Delete", path: "/api/music", description: "Delete music"},
-    ]
+      ]
+  });
 });
-});
-
 
 app.get('/api/profile', function profile(request, response){
   response.json({
@@ -93,73 +90,97 @@ app.get('/api/profile', function profile(request, response){
   });
 });
 
-// Returns Books.
-app.get('/api/book', function (request, response) {
-  db.Book.find({},function(err, book){
-    if (err) { return console.log("Got a Get Books error: " + err);}
-    response.json(book); 
-});
-  });
-
-
-// Returns  Music.
-app.get('/api/music', function (request, response) {
-  db.Music.find({},function(err, music){
-    if (err) { return console.log("Got a get music error: " + err);}
-    response.json(music);
-  });
-});
-
-
-// Post Books.
-app.post('/api/book', function (request, response) {
-    var newBook = new db.Book (request.body);
-    newBook.save(function (err, book){
-      if (err) { 
-        return console.log("Got a get book posting error: " + err);
-      } 
-      //book.push(request.body);
-      response.json(book);
+  // Returns Complete Book Collection
+    app.get('/api/book', function (request, response) {
+        db.Book.find({},function(err, book){
+          if (err) { 
+            return console.log ("Got a Get Books error: " + err);
+          }
+          response.json(book); 
+      });
     });
-});
+
+  // Returns Complete Music Collection.
+    app.get('/api/music', function (request, response) {
+        db.Music.find({},function(err, music){
+          if (err) { 
+            return console.log ("Got a get music error: " + err);
+          }
+          response.json(music);
+        });
+    });
 
 
-//Post Music.
-app.post('/api/music', function (request, response) {
-  var newMusic= new db.Music (request.body); 
-  newMusic.save(function (err, music){
+  // Get a book by ID
+    app.get('/api/book/:id', function (request, response) {
+    //console.log('book  to delete:', request.params.id);
+      db.Book.find({'_id' : request.params.id}, function (err, specificBook) {
+        if (err) { 
+            return console.log("Error finding book " + err);
+        }
+        console.log(specificBook);
+        response.json(specificBook);
+      });
+    });
 
-      if (err) { 
-        return console.log("Got a get music posting error: " + err);
-      }
-  //music.push(request.body);
-  response.json(music);
-});
-});
+      // Get a Music selection by ID
+    app.get('/api/music/:id', function (request, response) {
+    //console.log('book  to delete:', request.params.id);
+      db.Music.find({'_id' : request.params.id}, function (err, specificMusic) {
+        if (err) { 
+            return console.log("Error finding music " + err);
+        }
+        console.log(specificMusic);
+        response.json(specificMusic);
+      });
+    });
 
 
-    // delete Book (unclear whether we can delete by name or of we need database ID number.)
+    // Post Books.
+    app.post('/api/book', function (request, response) {
+        var newBook = new db.Book (request.body);
+        newBook.save(function (err, book){
+          if (err) { 
+            return console.log("Got a get book posting error: " + err);
+          } 
+          response.json(book);
+        });
+    });
+
+    //Post Music.
+    app.post('/api/music', function (request, response) {
+        var newMusic= new db.Music (request.body); 
+        newMusic.save(function (err, music){
+          if (err) { 
+            return console.log("Got a get music posting error: " + err);
+          }
+          response.json(music);
+        });
+    });
+
+    // delete Book 
     app.delete('/api/book/:id', function (request, response) {
-    // get book id from url params (request.params)
-    console.log('book delete', request.params.id);
-    var bookId = request.params.id;
-    //find the id of the book to remove
-    db.book.findOneAndRemove({_id: request.params.id}, function (err, deletedBook) {
-    response.json(deletedBook);
-    });
+    console.log('book to delete:', request.params.id);
+      db.Book.findOneAndRemove({'_id' : request.params.id}, function (err, deletedBook) {
+        if (err) { 
+            return console.log("Error deleting book " + err);
+        }
+        console.log(deletedBook);
+        response.json(deletedBook);
+      });
     });
 
-
-    // // delete Music
-    // app.delete('/api/music/:id', function (request, response) {
-    // // get book id from url params (request.params)
-    // console.log('music to delete', request.params.id);
-    // var musicId = request.params.id;
-    // //find the id of the book to remove
-    // db.music.findOneAndRemove({_id: request.params.id}, function (err, deletedMusic) {
-    // response.json(deletedMusic);
-    // }); 
-    // });
+    //delete Music
+    app.delete('/api/music/:id', function (request, response) {
+    console.log('music to delete', request.params.id);
+      db.Music.findOneAndRemove({'_id' :request.params.id}, function (err, deletedMusic) {
+        if (err) { 
+            return console.log("Error deleting music " + err); 
+        }
+        console.log(deletedMusic);
+        response.json(deletedMusic);
+      }); 
+    });
 
 
 /**********
