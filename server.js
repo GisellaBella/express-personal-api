@@ -113,11 +113,7 @@ app.get('/api/music', function (request, response) {
 
 // Post Books.
 app.post('/api/book', function (request, response) {
-    var newBook = new db.Book ({
-        book_name: request.body.book_name,
-        plot_summary: request.body.plot_summary,
-        type: request.body.type
-    });
+    var newBook = new db.Book (request.body);
     newBook.save(function (err, book){
       if (err) { 
         return console.log("Got a get book posting error: " + err);
@@ -129,18 +125,17 @@ app.post('/api/book', function (request, response) {
 
 
 //Post Music.
-// app.post('/api/music', function (request, response) {
-//   var newMusic= new db.Music ({
-//       music: request.body.music,
-//   });
-//   newMusic.save(function (err, book){
-//       if (err) { 
-//         return console.log("Got a get music posting error: " + err);
-//       }
-//   //music.push(request.body);
-//   response.json(music);
-// });
-// });
+app.post('/api/music', function (request, response) {
+  var newMusic= new db.Music (request.body); 
+  newMusic.save(function (err, music){
+
+      if (err) { 
+        return console.log("Got a get music posting error: " + err);
+      }
+  //music.push(request.body);
+  response.json(music);
+});
+});
 
 
     // delete Book (unclear whether we can delete by name or of we need database ID number.)

@@ -43,15 +43,17 @@ var music_list =	[
 
 ];
 
-	// db.Profile.create(profile, function(err, profile){   
-	// if (err) {
-	// 	console.log("Profile DB create Error:", err);
-	// 	return;
-	//}
-//console.log("Created new profile", profile._id); 
-//process.exit();
+
+
+// db.Profile.create(profile, function(err, profile){   
+// 	if (err) {
+// 		console.log("Profile DB create Error:", err);
+// 		return;
+// 	}
+// console.log("Created new profile", profile._id); 
+// process.exit();
 // we're all done! Exit the program.
-//});
+// });
 
 db.Music.create(music_list, function(err, music){
       if (err) { return console.log(' music db err', err); }
